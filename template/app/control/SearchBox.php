@@ -8,6 +8,9 @@
  * @copyright  Copyright (c) 2006 Adianti Solutions Ltd. (http://www.adianti.com.br)
  * @license    https://adiantiframework.com.br/license-template
  */
+
+ use Adianti\Control\TPage;
+ 
 class SearchBox extends TPage
 {
     private $form;
