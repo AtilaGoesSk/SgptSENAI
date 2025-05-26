@@ -7,7 +7,7 @@ CREATE TABLE usuario (
     nm_usuario VARCHAR(100) NOT NULL,
     ds_email VARCHAR(100) UNIQUE NOT NULL,
     ds_senha TEXT NOT NULL,
-    tp_usuario VARCHAR(10) NOT NULL,
+    tp_usuario int(10) NOT NULL,
     dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE execucao_teste (
     id_execucao_teste SERIAL CONSTRAINT pk_execucao_teste PRIMARY KEY,
     id_caso_teste INT REFERENCES caso_teste(id_caso_teste) CONSTRAINT fk_execucao_teste_caso_teste,
     id_usuario INT REFERENCES usuario(id_usuario) CONSTRAINT fk_execucao_teste_usuario,
-    tp_execucao VARCHAR(10),
+    tp_execucao int(10),
     dt_execucao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE analise_registro (
 CREATE TABLE status_teste (
     id_status_teste SERIAL CONSTRAINT pk_status_teste PRIMARY KEY,
     id_analise_registro INT REFERENCES analise_registro(id_analise_registro) CONSTRAINT fk_status_teste_analise_registro,
-    tp_status VARCHAR(10),
+    tp_status int(10),
     dt_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
