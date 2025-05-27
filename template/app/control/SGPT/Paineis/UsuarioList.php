@@ -29,6 +29,11 @@ class UsuarioList extends TPage
         $ds_email     = new TEntry('ds_email');
         $dt_criacao   = new TDate('dt_criacao');
 
+        $nm_usuario->setMaxLength(20);
+        $ds_email->setMaxLength(60);
+        
+
+
         // Configurações básicas dos filtros
         $nm_usuario->setProperty('placeholder', 'Filtrar por Nome');
         $id_usuario->setProperty('placeholder', 'Filtrar por ID');
@@ -57,6 +62,10 @@ class UsuarioList extends TPage
         $column_nm_usuario = new TDataGridColumn('nm_usuario', 'Nome', 'left', 200);
         $column_ds_email   = new TDataGridColumn('ds_email', 'E-mail', 'left', 200);
         $column_dt_criacao = new TDataGridColumn('dt_criacao', 'Criado em', 'center', 100);
+
+        $column_dt_criacao->setTransformer(function ($value, $object, $row, $cell = null, $last_row = null) {
+            return FormatarCampos::formatarData($value);
+        });
 
         // Permitir ordenar colunas
         $column_id_usuario->setAction(new TAction([$this, 'onReload']), ['order' => 'id_usuario']);

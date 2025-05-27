@@ -22,6 +22,10 @@ class UsuarioForm extends TPage
         $tp_usuario   = new TCombo('tp_usuario');
         $dt_criacao   = new TDateTime('dt_criacao');
 
+        $nm_usuario->setMaxLength(20);
+        $ds_email->setMaxLength(60);
+        $ds_senha->setMaxLength(20);
+
         // Configurações e placeholders
         $nm_usuario->setProperty('placeholder', 'Nome do Usuário');
         $ds_email->setProperty('placeholder', 'E-mail');

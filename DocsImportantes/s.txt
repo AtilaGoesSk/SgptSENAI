@@ -1,0 +1,109 @@
+Mestre-> PLANO DE TESTE
+            ->Detalhe-> CASOS DE TESTE
+
+Plano de Teste
+  └── Caso(s) de Teste
+        └── Teste(s) (execuções)
+
+Inclusão de Plano
+  └─ Gerenciar Casos
+      └─ Registrar ou Automatizar Testes
+          └─ Analisar Resultados
+              └─ Gerenciar Status
+                  └─ Comunicação e Feedback
+
+📌 FUNCIONALIDADES DO SISTEMA DE TESTES
+✅ 1. Inclusão de Plano de Teste
+Cadastro de um novo Plano de Teste, que organiza os objetivos e escopo dos testes de um sistema, módulo ou release.
+
+Nome do plano
+
+Descrição e objetivo
+
+Sistema ou módulo relacionado
+
+Responsável
+
+Datas estimadas (início/término)
+
+Status inicial (ex: rascunho, em execução, finalizado)
+
+🧩 2. Gerenciar Casos de Teste
+Inserção, edição, exclusão e organização de Casos de Teste vinculados a um Plano.
+
+Associar ao Plano de Teste
+
+Criar novos casos com: título, passos, pré-condições e resultado esperado
+
+Editar ou remover casos
+
+Importar casos (CSV ou ferramenta externa)
+
+Duplicar caso para facilitar variações
+
+Marcar prioridade / categoria / tags
+
+🤖 3. Automação de Testes
+Integração com testes automatizados, registrando suas execuções diretamente no sistema.
+
+Associar scripts de automação a casos de teste
+
+Executar testes via pipeline externo (CI/CD)
+
+Registrar logs e resultados automaticamente
+
+Integrar com ferramentas como Selenium, Postman, JMeter, etc.
+
+Visualizar histórico de execuções automatizadas
+
+📝 4. Registrar Teste
+Registro manual ou automático da execução de um Caso de Teste.
+
+Seleção de caso e ambiente
+
+Resultado: Aprovado, Reprovado, Bloqueado
+
+Data/hora e responsável pela execução
+
+Upload de evidências (prints, logs, vídeo)
+
+Comentários
+
+Vínculo com bugs (se falhar)
+
+🔍 5. Analisar e Verificar Registro
+Revisão e validação dos testes executados, com acompanhamento de qualidade.
+
+Filtro por plano, data, resultado, testador
+
+Métricas por status (aprovados, reprovados, pendentes)
+
+Histórico de execuções por caso
+
+Download de relatórios
+
+Painel de indicadores (gráficos, progresso)
+
+🔄 6. Gerenciar Status
+Controle do status geral do Plano, dos Casos e das Execuções.
+
+Plano: Rascunho, Em Execução, Concluído, Cancelado
+
+Casos: Pendente, Em Execução, Finalizado, Reaberto
+
+Execuções: Aprovado, Reprovado, Bloqueado
+
+Ações automatizadas (ex: caso reprovado → reabrir bug)
+
+📣 7. Comunicação e Feedback
+Canal para troca de informações entre testadores, analistas e desenvolvedores.
+
+Comentários em execuções de teste
+
+Notificações de mudanças (ex: falha encontrada)
+
+Marcação de usuários (ex: @ana)
+
+Histórico de interações
+
+Feedbacks pós-execução para melhoria contínua
