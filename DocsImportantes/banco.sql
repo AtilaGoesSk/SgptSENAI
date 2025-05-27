@@ -1,7 +1,7 @@
--- Criação do banco de dados
+-- Criação do banco de dados 
 -- CREATE DATABASE sgpt_db;
 
--- Criação das tabelas
+-- Criação das tabelas 
 CREATE TABLE usuario (
     id_usuario SERIAL PRIMARY KEY,
     nm_usuario VARCHAR(100) NOT NULL,
