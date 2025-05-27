@@ -1,4 +1,12 @@
 <menu>
+    <menuitem label='SGPT'>
+            <menu>
+                <menuitem label='Usuários'>
+                    <icon></icon>
+                    <action>UsuarioList</action>
+                </menuitem>
+            </menu>
+    </menuitem>
     <menuitem label='_t{Administration}'>
         <icon>fas:sliders fa-fw</icon>
         <menu>
