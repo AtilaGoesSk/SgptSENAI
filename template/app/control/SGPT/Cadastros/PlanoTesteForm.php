@@ -246,7 +246,7 @@ class PlanoTesteForm extends TPage
     
     public static function onEditCasos( $param )
     {
-        $dt_criacao_detalhe = $param['dt_criacao_detalhe'] != null ? date('d/m/Y', strtotime($dt_criacao_detalhe)) : date('d/m/Y');
+        $dt_criacao_detalhe = $param['dt_criacao_detalhe'] != null ? date('d/m/Y', strtotime($param['dt_criacao_detalhe'])) : date('d/m/Y');
 
         $data = new stdClass;
         $data->caso_teste_uniqid     = $param['uniqid'];
