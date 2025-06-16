@@ -60,14 +60,14 @@ class DashboardPlanoTeste extends TPage
         // Gráficos
         $div->add($g1 = new BarChartView(false));
         /*$div->add($g2 = new LineChartView(false));
-        $div->add($g3 = new ColumnChartView(false));
-        $div->add($g4 = new PieChartView(false));*/
+        $div->add($g3 = new ColumnChartView(false));*/
+        $div->add($g4 = new PieChartView(false));
 
         // Define tamanho dos gráficos
         $g1->class = 'col-sm-6';
         /*$g2->class = 'col-sm-6';
-        $g3->class = 'col-sm-6';
-        /*$g4->class = 'col-sm-6';*/
+        $g3->class = 'col-sm-6';*/
+        $g4->class = 'col-sm-6';
 
         // Breadcrumb + Layout
         $vbox->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
