@@ -5,6 +5,14 @@
                   <icon>fas:user fa-fw</icon>
                   <action>SystemUserList</action>
               </menuitem>
+              <menuitem label='Projetos'>
+                  <icon>fas:project-diagram fa-fw</icon>
+                  <action>ProjetoList</action>
+              </menuitem>
+              <menuitem label='Plano de teste'>
+                  <icon>fas:project-diagram fa-fw</icon>
+                  <action>PlanoTesteList</action>
+              </menuitem>
             </menu>
     </menuitem>
     <menuitem label='_t{Administration}'>
