@@ -1,35 +1,37 @@
 CREATE DATABASE sgpt_db;
---drop database sgpt_db;
+USE sgpt_db;
 
--- Tabela de Projetos
+ALTER TABLE system_users
+ADD COLUMN tp_cargo INT NOT NULL DEFAULT 1;
+
 CREATE TABLE projeto_teste (
-    id_projeto SERIAL PRIMARY KEY,
+    id_projeto INT AUTO_INCREMENT PRIMARY KEY,
     nm_projeto VARCHAR(150) NOT NULL,
-    ds_projeto TEXT,
-    nu_versao VARCHAR(20), -- Ex.: '1.0', '2.5'
-    id_usuario INTEGER REFERENCES system_users(id) ON DELETE SET NULL,
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ds_projeto TEXT NOT NULL,
+    nu_versao VARCHAR(20) NOT NULL,
+    id_usuario INT NOT NULL,
+    dt_criacao DATE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES system_users(id)
 );
 
--- Tabela de Planos de Teste
 CREATE TABLE plano_teste (
-    id_plano_teste SERIAL PRIMARY KEY,
-    id_projeto INTEGER REFERENCES projeto_teste(id_projeto) ON DELETE CASCADE,
+    id_plano_teste INT AUTO_INCREMENT PRIMARY KEY,
+    id_projeto INT NOT NULL,
     nm_plano VARCHAR(150) NOT NULL,
-    ds_plano TEXT,
-    dt_inicio DATE,
-    dt_final DATE,
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ds_plano TEXT NOT NULL,
+    dt_inicio DATE NOT NULL,
+    dt_final DATE NOT NULL,
+    dt_criacao DATE NOT NULL,
+    FOREIGN KEY (id_projeto) REFERENCES projeto_teste(id_projeto)
 );
 
--- Tabela de Casos de Teste
 CREATE TABLE caso_teste (
     id_caso_teste SERIAL PRIMARY KEY,
-    id_plano_teste INTEGER REFERENCES plano_teste(id_plano_teste) ON DELETE CASCADE,
+    id_plano_teste INTEGER REFERENCES plano_teste(id_plano_teste) NOT NULL,
     nm_caso_teste VARCHAR(150) NOT NULL,
-    ds_caso_teste TEXT,
-    tp_categoria VARCHAR(50), -- Ex.: 'Funcional', 'Interface', 'Segurança', etc.
-    ds_resultado_esperado TEXT,
-    tp_status VARCHAR(20) DEFAULT 'Pendente' CHECK (tp_status IN ('Pendente', 'Sucesso', 'Falha', 'Bloqueado')),
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ds_caso_teste TEXT NOT NULL,
+    tp_categoria INTEGER NOT NULL,
+    ds_resultado_esperado TEXT NOT NULL,
+    tp_status INTEGER NOT NULL,    
+    dt_criacao DATE NOT NULL
 );
