@@ -13,12 +13,16 @@
                   <icon>fas:project-diagram fa-fw</icon>
                   <action>PlanoTesteList</action>
               </menuitem>
+              <menuitem label='Dashboard Plano de Teste'>
+                  <icon>fas:tachometer-alt fa-fw</icon>
+                  <action>DashboardPlanoTeste</action>
+              </menuitem>
             </menu>
     </menuitem>
     <menuitem label='_t{Administration}'>
         <icon>fas:sliders fa-fw</icon>
         <menu>
-              <menuitem label='Dashboard'>
+              <menuitem label='Dashboard Administração'>
                   <icon>fas:tachometer-alt fa-fw</icon>
                   <action>SystemAdministrationDashboard</action>
               </menuitem>
