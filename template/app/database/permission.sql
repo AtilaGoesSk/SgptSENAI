@@ -54,6 +54,9 @@ CREATE TABLE system_users (
     FOREIGN KEY(frontpage_id) REFERENCES system_program(id)
 );
 
+ALTER TABLE system_users
+ADD COLUMN tp_cargo INTEGER NOT NULL DEFAULT 1;
+
 --- Create system_user_unit table
 CREATE TABLE system_user_unit (
     id int PRIMARY KEY NOT NULL,
