@@ -46,6 +46,7 @@ class SystemUser extends TRecord
         parent::addAttribute('accepted_term_policy_data');
         parent::addAttribute('custom_code');
         parent::addAttribute('otp_secret');
+        parent::addAttribute('tp_cargo');
     }
     
     /**

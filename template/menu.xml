@@ -1,10 +1,10 @@
 <menu>
     <menuitem label='SGPT'>
             <menu>
-                <menuitem label='Usuários'>
-                    <icon></icon>
-                    <action>UsuarioList</action>
-                </menuitem>
+                <menuitem label='_t{Users}'>
+                  <icon>fas:user fa-fw</icon>
+                  <action>SystemUserList</action>
+              </menuitem>
             </menu>
     </menuitem>
     <menuitem label='_t{Administration}'>

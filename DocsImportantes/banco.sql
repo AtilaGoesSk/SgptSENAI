@@ -1,86 +1,35 @@
--- Criação do banco de dados 
--- CREATE DATABASE sgpt_db;
+CREATE DATABASE sgpt_db;
+--drop database sgpt_db;
 
--- Criação das tabelas 
-CREATE TABLE usuario (
-    id_usuario SERIAL PRIMARY KEY,
-    nm_usuario VARCHAR(100) NOT NULL,
-    ds_email VARCHAR(100) UNIQUE NOT NULL,
-    ds_senha TEXT NOT NULL,
-    tp_usuario INTEGER NOT NULL,
+-- Tabela de Projetos
+CREATE TABLE projeto_teste (
+    id_projeto SERIAL PRIMARY KEY,
+    nm_projeto VARCHAR(150) NOT NULL,
+    ds_projeto TEXT,
+    nu_versao VARCHAR(20), -- Ex.: '1.0', '2.5'
+    id_usuario INTEGER REFERENCES system_users(id) ON DELETE SET NULL,
     dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE equipe (
-    id_equipe SERIAL PRIMARY KEY,
-    nm_equipe VARCHAR(100) NOT NULL,
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE usuario_equipe (
-    id_usuario_equipe SERIAL PRIMARY KEY,
-    id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario),
-    id_equipe INTEGER NOT NULL REFERENCES equipe(id_equipe),
-    UNIQUE (id_usuario, id_equipe)
-);
-
+-- Tabela de Planos de Teste
 CREATE TABLE plano_teste (
     id_plano_teste SERIAL PRIMARY KEY,
-    nm_titulo VARCHAR(150) NOT NULL,
+    id_projeto INTEGER REFERENCES projeto_teste(id_projeto) ON DELETE CASCADE,
+    nm_plano VARCHAR(150) NOT NULL,
     ds_plano TEXT,
-    id_usuario INTEGER REFERENCES usuario(id_usuario),
+    dt_inicio DATE,
+    dt_final DATE,
     dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabela de Casos de Teste
 CREATE TABLE caso_teste (
     id_caso_teste SERIAL PRIMARY KEY,
-    id_plano_teste INTEGER REFERENCES plano_teste(id_plano_teste),
-    nm_titulo VARCHAR(150) NOT NULL,
-    ds_caso TEXT,
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE execucao_teste (
-    id_execucao_teste SERIAL PRIMARY KEY,
-    id_caso_teste INTEGER REFERENCES caso_teste(id_caso_teste),
-    id_usuario INTEGER REFERENCES usuario(id_usuario),
-    tp_execucao INTEGER,
-    dt_execucao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE registro_teste (
-    id_registro_teste SERIAL PRIMARY KEY,
-    id_execucao_teste INTEGER REFERENCES execucao_teste(id_execucao_teste),
-    ds_resultado TEXT,
-    dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE analise_registro (
-    id_analise_registro SERIAL PRIMARY KEY,
-    id_registro_teste INTEGER REFERENCES registro_teste(id_registro_teste),
-    id_usuario INTEGER REFERENCES usuario(id_usuario),
-    ds_comentario TEXT,
-    dt_analise TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE status_teste (
-    id_status_teste SERIAL PRIMARY KEY,
-    id_analise_registro INTEGER REFERENCES analise_registro(id_analise_registro),
-    tp_status INTEGER,
-    dt_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE escopo (
-    id_escopo SERIAL PRIMARY KEY,
-    ds_escopo TEXT NOT NULL,
-    id_usuario INTEGER REFERENCES usuario(id_usuario),
-    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE feedback (
-    id_feedback SERIAL PRIMARY KEY,
-    id_usuario_remetente INTEGER REFERENCES usuario(id_usuario),
-    id_usuario_destinatario INTEGER REFERENCES usuario(id_usuario),
-    ds_mensagem TEXT NOT NULL,
+    id_plano_teste INTEGER REFERENCES plano_teste(id_plano_teste) ON DELETE CASCADE,
+    nm_caso_teste VARCHAR(150) NOT NULL,
+    ds_caso_teste TEXT,
+    tp_categoria VARCHAR(50), -- Ex.: 'Funcional', 'Interface', 'Segurança', etc.
+    ds_resultado_esperado TEXT,
+    tp_status VARCHAR(20) DEFAULT 'Pendente' CHECK (tp_status IN ('Pendente', 'Sucesso', 'Falha', 'Bloqueado')),
     dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

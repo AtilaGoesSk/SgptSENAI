@@ -46,6 +46,7 @@ class SystemUserForm extends TPage
         $function_name = new TEntry('function_name');
         $about         = new TEntry('about');
         $custom_code   = new TEntry('custom_code');
+        $role          = new TCombo('tp_cargo');
         
         $password->disableAutoComplete();
         $repassword->disableAutoComplete();
@@ -54,6 +55,7 @@ class SystemUserForm extends TPage
         $btn->class = 'btn btn-sm btn-primary';
         $this->form->addActionLink( _t('Clear'), new TAction(array($this, 'onEdit')), 'fa:eraser red');
         //$this->form->addActionLink( _t('Back'), new TAction(array('SystemUserList','onReload')), 'far:arrow-alt-circle-left blue');
+        $role->addItems(Enum::TP_CARGO);
         
         // define the sizes
         $id->setSize('50%');
@@ -65,6 +67,8 @@ class SystemUserForm extends TPage
         $unit_id->setSize('100%');
         $frontpage_id->setSize('100%');
         $frontpage_id->setMinLength(1);
+        $role->setSize('100%');
+
         
         // outros
         $id->setEditable(false);
@@ -81,6 +85,7 @@ class SystemUserForm extends TPage
         $this->form->addFields( [new TLabel(_t('Main unit'))], [$unit_id],  [new TLabel(_t('Front page'))], [$frontpage_id] );
         $this->form->addFields( [new TLabel(_t('Password'))], [$password],  [new TLabel(_t('Password confirmation'))], [$repassword] );
         $this->form->addFields( [new TLabel(_t('Custom code'))], [$custom_code] );
+        $this->form->addFields( [new TLabel(_t('Role'))], [$role] );
         
         $subform = new BootstrapFormBuilder;
         $subform->setFieldSizes('100%');
