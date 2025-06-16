@@ -2,46 +2,28 @@
 
 class LineChartView extends TPage
 {
-    function __construct( $show_breadcrumb = true )
+    function __construct($show_breadcrumb = true)
     {
         parent::__construct();
 
-        $html = new THtmlRenderer('app/resources/google_line_chart.html');
+        $html = new THtmlRenderer('app/resources/google_chart_base.html');
 
         $data = [];
-        $data[] = ['Mês', 'Planos de Teste']; // Cabeçalho do gráfico
+        $data[] = ['Day', 'Value 1', 'Value 2', 'Value 3'];
+        $data[] = ['Day 1', 120, 140, 160];
+        $data[] = ['Day 2', 100, 120, 140];
+        $data[] = ['Day 3', 140, 160, 180];
 
-        TTransaction::open('SGPT_DB'); // Troque pelo nome da conexão
-
-        $conn = TTransaction::get();
-        $result = $conn->query("
-            SELECT 
-                TO_CHAR(dt_criacao, 'YYYY-MM') AS mes,
-                SUM(CASE WHEN tp_status = '2' THEN 1 ELSE 0 END) AS aprovados,
-                SUM(CASE WHEN tp_status = '3' THEN 1 ELSE 0 END) AS reprovados
-            FROM caso_teste
-            GROUP BY mes
-            ORDER BY mes
-        ");
-
-        $data = [];
-        $data[] = ['Mês', 'Aprovados', 'Reprovados'];
-
-        foreach ($result as $row) {
-            $data[] = [ $row['mes'], (int) $row['aprovados'], (int) $row['reprovados'] ];
-        }
-
-        TTransaction::close();
-
-        // Renderização do gráfico
         $html->enableSection('main', [
-            'data'   => json_encode($data),
-            'width'  => '100%',
-            'height' => '400px',
-            'title'  => 'Evolução dos Planos de Teste por Mês',
-            'ytitle' => 'Planos',
-            'xtitle' => 'Mês',
-            'uniqid' => uniqid()
+            'data'       => json_encode($data),
+            'width'      => '100%',
+            'height'     => '300px',
+            'title'      => 'Accesses by day',
+            'ytitle'     => 'Accesses',
+            'xtitle'     => 'Day',
+            'uniqid'     => uniqid(),
+            'chart_type' => 'LineChart',
+            'options'    => "" // se quiser, opções específicas do line chart
         ]);
 
         $container = new TVBox;
@@ -52,7 +34,6 @@ class LineChartView extends TPage
         }
 
         $container->add($html);
-
         parent::add($container);
     }
 }
