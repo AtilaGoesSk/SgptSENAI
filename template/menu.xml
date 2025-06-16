@@ -13,7 +13,7 @@
                   <icon>fas:project-diagram fa-fw</icon>
                   <action>PlanoTesteList</action>
               </menuitem>
-              <menuitem label='Dashboard Plano de Teste'>
+              <menuitem label='Dashboard'>
                   <icon>fas:tachometer-alt fa-fw</icon>
                   <action>DashboardPlanoTeste</action>
               </menuitem>
