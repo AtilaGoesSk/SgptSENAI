@@ -135,7 +135,7 @@ class ProjetoList extends TPage
             $key = $param['key'];
             TTransaction::open('SGPT_DB');
 
-            $projeto = new Projeto($key);
+            $projeto = new ProjetoTeste($key);
             $projeto->delete();
 
             TTransaction::close();
